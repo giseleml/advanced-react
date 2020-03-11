@@ -1,5 +1,4 @@
 # Advanced React 
-___________________________________________________________________
 
 # Fragments > divs
 Fragments permitem agrupar uma lista de filhos sem adicionar nodes extras na DOM (como o div faz).
