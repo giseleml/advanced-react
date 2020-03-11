@@ -85,6 +85,74 @@ Assim, para modificar um filho, é necessário re-renderizá-lo com novos props.
 Porém, há alguns casos onde é necessário modificar imperativamente uma child fora do fluxo
 de data típico. 
 
+# Virtual DOM
+Conceito de uma representação ideal virtual da interface do usuário é mantida em memória
+e sincronizada com o DOM 'real' por uma biblioteca como o ReactDOM. Esse processo se chama reconciliação.
+
+Você diz ao React qual state deseja a UI para ser, e ele garante que o DOM se encaixe nesse state. 
+
+# Binding
+<code>
+obj.method()
+
+var method = obj.method
+method()
+</code>
+
+Esses dois trechos de código não são equivalentes. 
+Métodos binding ajudam garantir que o segundo trecho funcione do mesmo jeito que o primeiro.
+ 
+No React, tipicamente só é necessário bindar métodos que você passa para outros componentes.
+Exemplo:
+<code>
+<button onClick={this.handleClick> 
+</code>
+passa this.handleClick então ele deve ser bindado. 
+
+# Hooks 
+Permitem usar state e outras características React sem escrever uma classe.
+
+<code>
+import React, {useState} from 'react'
+
+> useState
+
+function Test() {
+	const [count, setCount] = useState(0);
+	return (
+		<div>
+			<p>Você clicou {count} vezes</p>
+			<button onClick={() => setCount(count + 1)}>Clique</button>
+		</div>
+	)
+}
+</code>
+
+Note os brackets <code> [count, setCount] </code>. Essa syntax é chamada array destructuring. 
+Significa que estamos fazendo duas novas variáveis count e setCount, onde count é setada pro 
+primeiro valor retornado por useState e setCount pro segundo. 
+
+useState(valorInicial) - É similar ao this.setState em uma classe, porém ele não mergeia o state antigo e o novo. 
+useState preserva o state entre renderizações.
+
+> useEffect
+
+Data fetching, subscriptions ou mudanças manuais na DOM por componentes React são chamados operações "side effects"
+ou só "effects" porque eles podem afetar outros componentes e não pode ser feito durante renderização.
+
+O hook Effect provêm a habilidade de performar side effects por uma função. Serve para o mesmo propósito de 
+componentDidMount, componentDidUpdate e componentWillUnmount nas classes React. 
+
+<code>
+useEffect(() => {
+	document.title = `Você clicou ${count} vezes`;
+)}
+</code>
+
+Ao chamar useEffect() estamos dizendo ao React para executar sua função effect depois de carregar mudanças
+no DOM. Effects são declarados dentro de um componente então têm acesso às suas props e state. Por padrão
+o React executa effects depois de cada renderização.
+
 _________________________________________________________
 # Library vs Framework
 
