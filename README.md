@@ -5,18 +5,26 @@ Fragments permitem agrupar uma lista de filhos sem adicionar nodes extras na DOM
 
 > Exemplo:
 
-<code>
+
 class Columns extends React.Component {
+<br>
   render() {
+  <br>
     return (
+    <br>
       <React.Fragment>
+      <br>
         <td>Hello</td>
+	<br>
         <td>World</td>
+	<br>
       </React.Fragment>
+      <br>
     );
+    <br>
   }
 }
-</code>
+
 
 Uma syntax mais curta seria <></> mas não suporta keys/atributos.
 
